@@ -10,6 +10,7 @@ export TERM="xterm-256color"                      # getting proper colors
 export HISTORY_IGNORE="(ls|cd|pwd|exit|sudo reboot|history|cd -|cd ..)"
 export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
 export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
+export ZSH=$HOME/.oh-my-zsh
 
 ### SET MANPAGER
 ### Uncomment only one of these!
@@ -23,6 +24,7 @@ export MANPAGER="nvim +Man!"
 ### SET VI MODE ###
 # Comment this line out to enable default emacs-like bindings
 bindkey -v
+bindkey "^[[3~" delete-char
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -62,9 +64,6 @@ fi
 if [ -z "$XDG_CACHE_HOME" ] ; then
     export XDG_CACHE_HOME="$HOME/.cache"
 fi
-export XMONAD_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/xmonad" # xmonad.hs is expected to stay here
-export XMONAD_DATA_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/xmonad"
-export XMONAD_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/xmonad"
 
 ### CHANGE TITLE OF TERMINALS
 case ${TERM} in
@@ -239,12 +238,17 @@ alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/mas
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
 # Or install it from the Arch User Repository: shell-color-scripts
-colorscript random
+# colorscript random
 
 ### BASH INSULTER (works in zsh though) ###
 if [ -f /etc/bash.command-not-found ]; then
     . /etc/bash.command-not-found
 fi
 
+### ZSH-Plugins
+ZSH_THEME="kiwi"
+plugins=(git lol screen vscode rust battery colorize zsh-autosuggestions)
+source $ZSH/oh-my-zsh.sh
+
 ### SETTING THE STARSHIP PROMPT ###
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"
