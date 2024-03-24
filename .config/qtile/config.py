@@ -140,11 +140,26 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
     Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
+    Key([mod], "l", lazy.spawn('i3lock'), desc="Lock screen"),
 
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
-    
+
+    # fn-keys
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), desc="Lower Volume by 5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+"), desc="Raise Volume by 5%"),
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle"), desc="Mute/Unmute Volume"),
+    Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause player"),
+    Key([], "XF86AudioStop", lazy.spawn("playerctl stop"), desc="Stop player"),
+    Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Skip to next"),
+    Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Skip to previous"), 
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A  10"), desc="Increase brightness"),
+    Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 10"), desc="Decrease brightness"),
+    Key([], "Print", lazy.spawn("flameshot gui"), desc="Decrease brightness"),
+    # Key([], "XF86ScreenSave", lazy.spawn("flameshot gui"), desc="screenshot"),
+
+
     # Emacs programs launched using the key chord CTRL+e followed by 'key'
     KeyChord([mod],"e", [
         Key([], "e", lazy.spawn(myEmacs), desc='Emacs Dashboard'),

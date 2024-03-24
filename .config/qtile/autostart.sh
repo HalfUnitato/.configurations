@@ -22,4 +22,10 @@ xargs xwallpaper --stretch < ~/.cache/wall &
 setxkbmap noted
 
 # touchpad scroll natural
-xinput set-prop 14 331 1
+DEVICE_NAME="MSFT0001:00 04F3:317C Touchpad"
+PROP_NAME="libinput Natural Scrolling Enabled"
+VALUE="1"
+DEVICE_ID=$(xinput list --id-only "$DEVICE_NAME")
+if [ "$DEVICE_ID" ]; then
+  xinput set-prop "$DEVICE_ID" "$PROP_NAME" $VALUE
+fi
