@@ -36,6 +36,7 @@ from qtile_extras.widget.decorations import BorderDecoration
 import colors
 
 mod = "mod4"              # Sets mod key to SUPER/WINDOWS
+neo_mod3 = "mod5" #ISO_Level3_Shift"
 myTerm = "alacritty"      # My terminal of choice
 myBrowser = "firefox"       # My browser of choice
 myEmacs = "emacsclient -c -a 'emacs' " # The space at the end is IMPORTANT!
@@ -118,7 +119,7 @@ keys = [
     # Grow/shrink windows left/right. 
     # This is mainly for the 'monadtall' and 'monadwide' layouts
     # although it does also work in the 'bsp' and 'columns' layouts.
-    Key([mod], "equal",
+    Key([mod, neo_mod3], "w",
         lazy.layout.grow_left().when(layout=["bsp", "columns"]),
         lazy.layout.grow().when(layout=["monadtall", "monadwide"]),
         desc="Grow window to the left"
@@ -140,7 +141,7 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
     Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
-    Key([mod], "l", lazy.spawn('i3lock'), desc="Lock screen"),
+    Key([mod], "q", lazy.spawn('i3lock'), desc="Lock screen"),
 
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
