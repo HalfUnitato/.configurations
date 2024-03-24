@@ -277,6 +277,14 @@ widget_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
+def battery_color(charge):
+        if charge > 80:
+            return colors[4]
+        elif charge > 40:
+            return colors[5]
+        else:
+            return colors[3]
+        
 def init_widgets_list():
     widgets_list = [
         widget.Image(
@@ -334,6 +342,19 @@ def init_widgets_list():
                  foreground = colors[6],
                  max_chars = 40
                  ),
+        widget.Clock(
+                 foreground = colors[8],
+                 format = "⏱  %a, %b %d - %H:%M",
+                 decorations=[
+                     BorderDecoration(
+                         colour = colors[8],
+                         border_width = [0, 0, 2, 0],
+                     )
+                 ],
+                 ),
+        widget.Spacer(length = 8),
+        widget.CPUGraph(type='box'),
+        widget.Spacer(),
         widget.GenPollText(
                  update_interval = 300,
                  func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
@@ -402,6 +423,7 @@ def init_widgets_list():
         widget.KeyboardLayout(
                  foreground = colors[4],
                  fmt = '⌨  Kbd: {}',
+                 configured_keyboards=['noted'],
                  decorations=[
                      BorderDecoration(
                          colour = colors[4],
@@ -410,12 +432,12 @@ def init_widgets_list():
                  ],
                  ),
         widget.Spacer(length = 8),
-        widget.Clock(
-                 foreground = colors[8],
-                 format = "⏱  %a, %b %d - %H:%M",
+        widget.Battery(
+                 foreground=colors[0],
+                 background=battery_color(90),
                  decorations=[
                      BorderDecoration(
-                         colour = colors[8],
+                         colour = colors[0],
                          border_width = [0, 0, 2, 0],
                      )
                  ],

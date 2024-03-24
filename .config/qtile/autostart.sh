@@ -20,3 +20,6 @@ xargs xwallpaper --stretch < ~/.cache/wall &
 # 3. Uncomment to set wallpaper with nitrogen
 # nitrogen --restore &
 setxkbmap noted
+
+# touchpad scroll natural
+xinput set-prop 14 331 1
