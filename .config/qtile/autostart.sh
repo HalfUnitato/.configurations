@@ -29,3 +29,6 @@ DEVICE_ID=$(xinput list --id-only "$DEVICE_NAME")
 if [ "$DEVICE_ID" ]; then
   xinput set-prop "$DEVICE_ID" "$PROP_NAME" $VALUE
 fi
+
+picom &
+
