@@ -30,5 +30,4 @@ if [ "$DEVICE_ID" ]; then
   xinput set-prop "$DEVICE_ID" "$PROP_NAME" $VALUE
 fi
 
-picom &
-
+nitrogen --restore
