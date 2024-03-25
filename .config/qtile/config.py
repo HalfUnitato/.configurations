@@ -141,7 +141,7 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc='toggle floating'),
     Key([mod], "f", maximize_by_switching_layout(), lazy.window.toggle_fullscreen(), desc='toggle fullscreen'),
     Key([mod, "shift"], "m", minimize_all(), desc="Toggle hide/show all windows on current group"),
-    Key([mod], "q", lazy.spawn('i3lock'), desc="Lock screen"),
+    Key([mod], "q", lazy.spawn('i3lock -i /home/unitato/Pictures/lock_screen/00_fav.png'), desc="Lock screen"),
 
     # Switch focus of monitors
     Key([mod], "period", lazy.next_screen(), desc='Move focus to next monitor'),
