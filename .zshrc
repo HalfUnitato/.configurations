@@ -251,4 +251,4 @@ plugins=(git lol screen vscode rust battery colorize zsh-autosuggestions)
 source $ZSH/oh-my-zsh.sh
 
 ### SETTING THE STARSHIP PROMPT ###
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
