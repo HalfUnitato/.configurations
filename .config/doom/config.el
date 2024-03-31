@@ -162,24 +162,24 @@
 (map! :leader
       :desc "Load new theme" "h t" #'counsel-load-theme)
 
-(ednc-mode 1)
+(ednc-mode 0)
 
 (defun show-notification-in-buffer (old new)
-  (let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
-    (with-current-buffer (get-buffer-create name)
-      (if new (let ((inhibit-read-only t))
-                (if old (erase-buffer) (ednc-view-mode))
-                (insert (ednc-format-notification new t))
-                (pop-to-buffer (current-buffer)))
-        (kill-buffer)))))
+(let ((name (format "Notification %d" (ednc-notification-id (or old new)))))
+(with-current-buffer (get-buffer-create name)
+(if new (let ((inhibit-read-only t))
+(if old (erase-buffer) (ednc-view-mode))
+(insert (ednc-format-notification new t))
+(pop-to-buffer (current-buffer)))
+(kill-buffer)))))
 
 (add-hook 'ednc-notification-presentation-functions
-          #'show-notification-in-buffer)
+#'show-notification-in-buffer)
 
 (evil-define-key 'normal ednc-view-mode-map
-  (kbd "d")   'ednc-dismiss-notification
-  (kbd "RET") 'ednc-invoke-action
-  (kbd "e")   'ednc-toggle-expanded-view)
+(kbd "d")   'ednc-dismiss-notification
+(kbd "RET") 'ednc-invoke-action
+(kbd "e")   'ednc-toggle-expanded-view)
 
 (setq elfeed-goodies/entry-pane-size 0.5)
 
@@ -262,9 +262,9 @@
 
 (autoload 'exwm-enable "exwm-config.el")
 
-(setq doom-font (font-spec :family "JetBrains Mono" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
-      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
+(setq doom-font (font-spec :family "Fira Code" :size 15)
+      doom-variable-pitch-font (font-spec :family "Fira Code" :size 15)
+      doom-big-font (font-spec :family "Fira Code" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -347,7 +347,7 @@
       (:prefix ("t" . "toggle")
        :desc "Toggle minimap-mode" "m" #'minimap-mode))
 
-(set-face-attribute 'mode-line nil :font "Ubuntu Mono-13")
+(set-face-attribute 'mode-line nil :font "Fira Code")
 (setq doom-modeline-height 30     ;; sets modeline height
       doom-modeline-bar-width 5   ;; sets right bar width
       doom-modeline-persp-name t  ;; adds perspective name to modeline
@@ -787,7 +787,7 @@
        :desc "Increment register" "+" #'increment-register
        :desc "Point to register" "SPC" #'point-to-register))
 
-(setq shell-file-name "/bin/fish"
+(setq shell-file-name "/bin/zsh"
       vterm-max-scrollback 5000)
 (setq eshell-rc-script "~/.config/doom/eshell/profile"
       eshell-aliases-file "~/.config/doom/eshell/aliases"
@@ -796,7 +796,7 @@
       eshell-hist-ignoredups t
       eshell-scroll-to-bottom-on-input t
       eshell-destroy-buffer-when-process-dies t
-      eshell-visual-commands'("bash" "fish" "htop" "ssh" "top" "zsh"))
+      eshell-visual-commands'("bash" "zsh" "htop" "ssh" "top" "zsh"))
 (map! :leader
       :desc "Eshell"                 "e s" #'eshell
       :desc "Eshell popup toggle"    "e t" #'+eshell/toggle
