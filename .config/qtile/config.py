@@ -448,12 +448,25 @@ def init_widgets_list():
                  ],
                  ),
         widget.Spacer(length = 8),
+        #widget.Wlan(
+        #         foreground=colors[0],
+        #         decorations=[
+        #             BorderDecoration(
+        #                 colour = colors[0],
+        #                 border_width = [0, 0, 2, 0],
+        #             )
+        #         ],
+        #         ),
+        #widget.Spacer(length = 8),
         widget.Battery(
-                 foreground=colors[0],
-                 background=battery_color(90),
+                 charge_char='🔌',
+                 discharge_char='🔋',
+                 low_percentage=0.2,
+                 foreground=colors[1],
+                 #background=battery_color(90),
                  decorations=[
                      BorderDecoration(
-                         colour = colors[0],
+                         colour = colors[1],
                          border_width = [0, 0, 2, 0],
                      )
                  ],
