@@ -148,14 +148,14 @@ keys = [
     Key([mod], "comma", lazy.prev_screen(), desc='Move focus to prev monitor'),
 
     # fn-keys
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-"), desc="Lower Volume by 5%"),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+"), desc="Raise Volume by 5%"),
-    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle"), desc="Mute/Unmute Volume"),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%"), desc="Lower Volume by 5%"),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%"), desc="Raise Volume by 5%"),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle"), desc="Mute/Unmute Volume"),
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"), desc="Play/Pause player"),
     Key([], "XF86AudioStop", lazy.spawn("playerctl stop"), desc="Stop player"),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next"), desc="Skip to next"),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous"), desc="Skip to previous"), 
-    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A  10"), desc="Increase brightness"),
+    Key([], "XF86MonBrightnessUp", lazy.spawn("light -A 10"), desc="Increase brightness"),
     Key([], "XF86MonBrightnessDown", lazy.spawn("light -U 10"), desc="Decrease brightness"),
     Key([], "Print", lazy.spawn("flameshot gui"), desc="Decrease brightness"),
     # Key([], "XF86ScreenSave", lazy.spawn("flameshot gui"), desc="screenshot"),
