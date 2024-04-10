@@ -41,11 +41,11 @@ myTerm = "alacritty"      # My terminal of choice
 myBrowser = "firefox"       # My browser of choice
 myEmacs = "emacsclient -c -a 'emacs' " # The space at the end is IMPORTANT!
 
-# Allows you to input a name when adding treetab section.
-@lazy.layout.function
-def add_treetab_section(layout):
-    prompt = qtile.widgets_map["prompt"]
-    prompt.start_input("Section name: ", layout.cmd_add_section)
+# # Allows you to input a name when adding treetab section.
+# @lazy.layout.function
+# def add_treetab_section(layout):
+#     prompt = qtile.widgets_map["prompt"]
+#     prompt.start_input("Section name: ", layout.cmd_add_section)
 
 # A function for hide/show all the windows in a group
 @lazy.function
@@ -113,8 +113,8 @@ keys = [
     # multiple stack panes
     Key([mod, "shift"], "space", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 
-    # Treetab prompt
-    Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
+    # # Treetab prompt
+    # Key([mod, "shift"], "a", add_treetab_section, desc='Prompt to add new section in treetab'),
 
     # Grow/shrink windows left/right. 
     # This is mainly for the 'monadtall' and 'monadwide' layouts
@@ -232,7 +232,7 @@ for i in groups:
         ]
     )
 
-colors = colors.DoomOne
+colors = colors.MonokaiPro # DoomOne
 
 layout_theme = {"border_width": 2,
                 "margin": 8,
@@ -285,7 +285,7 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Ubuntu Bold",
+    font="FiraCode Nerd Font Mono",
     fontsize = 12,
     padding = 0,
     background=colors[0]
@@ -306,10 +306,10 @@ def init_widgets_list():
         widget.Image(
                  filename = "~/.config/qtile/icons/logo.png",
                  scale = "False",
-                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm)},
+                 mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm)},
                  ),
         widget.Prompt(
-                 font = "Ubuntu Mono",
+                 font = "FiraCode Nerd Font Mono",
                  fontsize=14,
                  foreground = colors[1]
         ),
@@ -332,7 +332,7 @@ def init_widgets_list():
                  ),
         widget.TextBox(
                  text = '|',
-                 font = "Ubuntu Mono",
+                 font = "FiraCode Nerd Font Mono",
                  foreground = colors[1],
                  padding = 2,
                  fontsize = 14
@@ -349,7 +349,7 @@ def init_widgets_list():
                  ),
         widget.TextBox(
                  text = '|',
-                 font = "Ubuntu Mono",
+                 font = "FiraCode Nerd Font Mono",
                  foreground = colors[1],
                  padding = 2,
                  fontsize = 14
@@ -397,7 +397,7 @@ def init_widgets_list():
         widget.Spacer(length = 8),
         widget.Memory(
                  foreground = colors[8],
-                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e htop')},
+                 mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm + ' -e htop')},
                  format = '{MemUsed: .0f}{mm}',
                  fmt = '🖥  Mem: {} used',
                  decorations=[
@@ -411,7 +411,7 @@ def init_widgets_list():
         widget.DF(
                  update_interval = 60,
                  foreground = colors[5],
-                 mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e df')},
+                 mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm + ' -e df')},
                  partition = '/',
                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
                  format = '{uf}{m} free',

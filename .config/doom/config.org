@@ -460,21 +460,21 @@ One of the media players available for Emacs is emms, which stands for Emacs Mul
 | emms-next             | /Play next track in playlist/       | SPC a n    |
 
 #+BEGIN_SRC emacs-lisp
-(emms-all)
-(emms-default-players)
-(emms-mode-line 1)
-(emms-playing-time 1)
-(setq emms-source-file-default-directory "~/Music/"
-      emms-playlist-buffer-name "*Music*"
-      emms-info-asynchronously t
-      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
-(map! :leader
-      (:prefix ("a" . "EMMS audio player")
-       :desc "Go to emms playlist"      "a" #'emms-playlist-mode-go
-       :desc "Emms pause track"         "x" #'emms-pause
-       :desc "Emms stop track"          "s" #'emms-stop
-       :desc "Emms play previous track" "p" #'emms-previous
-       :desc "Emms play next track"     "n" #'emms-next))
+;; (emms-all)
+;; (emms-default-players)
+;; (emms-mode-line 1)
+;; (emms-playing-time 1)
+;; (setq emms-source-file-default-directory "~/Music/"
+;;       emms-playlist-buffer-name "*Music*"
+;;       emms-info-asynchronously t
+;;       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+;; (map! :leader
+;;       (:prefix ("a" . "EMMS audio player")
+;;        :desc "Go to emms playlist"      "a" #'emms-playlist-mode-go
+;;        :desc "Emms pause track"         "x" #'emms-pause
+;;        :desc "Emms stop track"          "s" #'emms-stop
+;;        :desc "Emms play previous track" "p" #'emms-previous
+;;        :desc "Emms play next track"     "n" #'emms-next))
 #+END_SRC
 
 * EMOJIS
@@ -559,9 +559,9 @@ Settings related to fonts within Doom Emacs:
 + 'font-lock-keyword-face' -- for keywords with special significance like 'setq' in elisp.
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "Fira Code" :size 15)
-      doom-variable-pitch-font (font-spec :family "Fira Code" :size 15)
-      doom-big-font (font-spec :family "Fira Code" :size 24))
+(setq doom-font (font-spec :family "FiraCodo Nerd Font Mono" :size 15)
+      doom-variable-pitch-font (font-spec :family "FiraCodo Nerd Font Mono" :size 15)
+      doom-big-font (font-spec :family "FiraCodo Nerd Font Mono" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -726,7 +726,7 @@ The modeline is the bottom status bar that appears in Emacs windows.  For more i
 https://github.com/seagle0128/doom-modeline
 
 #+begin_src emacs-lisp
-(set-face-attribute 'mode-line nil :font "Fira Code")
+(set-face-attribute 'mode-line nil :font "FiraCodo Nerd Font Mono")
 (setq doom-modeline-height 30     ;; sets modeline height
       doom-modeline-bar-width 5   ;; sets right bar width
       doom-modeline-persp-name t  ;; adds perspective name to modeline
