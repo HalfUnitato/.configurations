@@ -360,7 +360,7 @@ def init_widgets_list():
                  ),
         widget.Clock(
                  foreground = colors[8],
-                 format = "⏱  %a, %b %d - %H:%M",
+                 format = "  %a, %b %d - %H:%M",
                  decorations=[
                      BorderDecoration(
                          colour = colors[8],
@@ -385,7 +385,7 @@ def init_widgets_list():
                  ),
         widget.Spacer(length = 8),
         widget.CPU(
-                 format = '▓  Cpu: {load_percent}%',
+                 format = '󰻠  Cpu: {load_percent}%',
                  foreground = colors[4],
                  decorations=[
                      BorderDecoration(
@@ -399,7 +399,7 @@ def init_widgets_list():
                  foreground = colors[8],
                  mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm + ' -e htop')},
                  format = '{MemUsed: .0f}{mm}',
-                 fmt = '🖥  Mem: {} used',
+                 fmt = '  Mem: {} used',
                  decorations=[
                      BorderDecoration(
                          colour = colors[8],
@@ -415,7 +415,7 @@ def init_widgets_list():
                  partition = '/',
                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
                  format = '{uf}{m} free',
-                 fmt = '🖴  Disk: {}',
+                 fmt = '  Disk: {}',
                  visible_on_warn = False,
                  decorations=[
                      BorderDecoration(
@@ -427,7 +427,7 @@ def init_widgets_list():
         widget.Spacer(length = 8),
         widget.Volume(
                  foreground = colors[7],
-                 fmt = '🕫  Vol: {}',
+                 fmt = '  Vol: {}',
                  decorations=[
                      BorderDecoration(
                          colour = colors[7],
@@ -459,8 +459,8 @@ def init_widgets_list():
         #         ),
         #widget.Spacer(length = 8),
         widget.Battery(
-                 charge_char='🔌',
-                 discharge_char='🔋',
+                 charge_char='󱐥',
+                 discharge_char='󰚦',
                  low_percentage=0.2,
                  foreground=colors[1],
                  #background=battery_color(90),
