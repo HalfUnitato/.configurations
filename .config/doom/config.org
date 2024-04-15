@@ -1,6 +1,7 @@
 #+TITLE: DT's Doom Emacs Config
 #+AUTHOR: Derek Taylor (DT)
 #+DESCRIPTION: DT's personal Doom Emacs config.
+#+PROPERTY: header-args :tangle config.el
 #+STARTUP: showeverything
 
 * TABLE OF CONTENTS :toc:
@@ -58,6 +59,8 @@
 - [[#start-page][START PAGE]]
 - [[#winner-mode][WINNER MODE]]
 - [[#zap-to-char][ZAP TO CHAR]]
+- [[#lsp-support][LSP SUPPORT]]
+  - [[#flutter-and-dart][FLUTTER AND DART]]
 
 * ABOUT THIS CONFIG
 This is my personal Doom Emacs config.  Doom Emacs is a distribution of Emacs that uses the "evil" keybindings (Vim keybindings) and includes a number of nice extensions and a bit of configuration out of the box.  I am maintaining this config not just for myself, but also for those that want to explore some of what is possible with Emacs.  I will add a lot of examples of plugins and settings, some of them I may not even use personally.  I do this because many people following me on YouTube look at my configs as "documentation".
@@ -559,9 +562,9 @@ Settings related to fonts within Doom Emacs:
 + 'font-lock-keyword-face' -- for keywords with special significance like 'setq' in elisp.
 
 #+BEGIN_SRC emacs-lisp
-(setq doom-font (font-spec :family "FiraCodo Nerd Font Mono" :size 15)
-      doom-variable-pitch-font (font-spec :family "FiraCodo Nerd Font Mono" :size 15)
-      doom-big-font (font-spec :family "FiraCodo Nerd Font Mono" :size 24))
+(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
+      doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -569,6 +572,9 @@ Settings related to fonts within Doom Emacs:
   '(font-lock-comment-face :slant italic)
   '(font-lock-keyword-face :slant italic))
 #+END_SRC
+
+#+RESULTS:
+| doom--customize-themes-h-113 | doom--customize-themes-h-114 |
 
 * IMENU
 Imenu produces menus for accessing locations in documents, typically in the current buffer. You can access the locations using an ordinary menu (menu bar or other) or using minibuffer completion, or you can install 'imenu-list' and have the imenu displayed as a vertical split that you can toggle show/hide.
@@ -721,12 +727,12 @@ A minimap sidebar displaying a smaller version of the current buffer on either t
        :desc "Toggle minimap-mode" "m" #'minimap-mode))
 #+end_src
 
-* MODELINE
+* MODELINE :toc:
 The modeline is the bottom status bar that appears in Emacs windows.  For more information on what is available to configure in the Doom modeline, check out:
 https://github.com/seagle0128/doom-modeline
 
 #+begin_src emacs-lisp
-(set-face-attribute 'mode-line nil :font "FiraCodo Nerd Font Mono")
+(set-face-attribute 'mode-line nil :font "FiraCode Nerd Font Mono")
 (setq doom-modeline-height 30     ;; sets modeline height
       doom-modeline-bar-width 5   ;; sets right bar width
       doom-modeline-persp-name t  ;; adds perspective name to modeline
@@ -1373,7 +1379,7 @@ Emacs provides a 'zap-to-char' command that kills from the current point to a ch
 | SPC u - SPC z e           | /deletes all chars to the previous occurrence of 'e'/        |
 | SPC u - 2 SPC z e         | /deletes all chars to the second previous occurrence of 'e'/ |
 | SPC u 1 0 0 SPC u SPC z e | /deletes all chars to the 100th occurrence of 'e'/           |
-
+f
 =TIP=: The universal argument (SPC u) can only take a single integer by default.  If you need to use a multi-digit number (like 100 in the last example in the table above), then you must terminate the universal argument with another 'SPC u' after typing the number.
 
 'zap-up-to-char' is an alternative command that does not zap the char specified.  It is binded to 'SPC Z'.  It can also be used in conjunction with the universal argument 'SPC u' in similar fashion to the the 'zap-to-char' examples above.
@@ -1385,3 +1391,37 @@ Emacs provides a 'zap-to-char' command that kills from the current point to a ch
       :desc "Zap to char"    "z" #'zap-to-char
       :desc "Zap up to char" "Z" #'zap-up-to-char)
 #+END_SRC
+
+* LSP SUPPORT
+
+Setup lsp-mode
+
+#+begin_src emacs-lisp
+(use-package! lsp-ui
+  :after lsp-mode
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-delay 0.5
+        lsp-ui-doc-position 'at-point ;; Or 'top, 'bottom, etc.
+        lsp-ui-doc-use-webkit nil
+        lsp-ui-sideline-enable t   ;; Enable sideline
+        lsp-ui-sideline-show-hover t)) ;; Show hover information in the sideline
+#+end_src
+
+** FLUTTER AND DART
+#+begin_src emacs-lisp
+(after! lsp-dart
+  (setq lsp-dart-sdk-dir "/usr/lib/flutter/bin/cache/dart-sdk")
+  (setq lsp-dart-flutter-sdk-dir "/usr/lib/flutter"))
+
+(after! dart-mode
+  (add-hook 'dart-mode-hook 'lsp))
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024))
+
+;; Optionally, you can also enable lsp-ui-imenu and lsp-ui-peek for additional features
+;; (lsp-ui-imenu-enable t)
+;; (lsp-ui-peek-enable t)
+
+#+end_src

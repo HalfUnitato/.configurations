@@ -208,22 +208,22 @@
                      ("https://betanews.com/feed" betanews linux)
                      ("http://lxer.com/module/newswire/headlines.rss" lxer linux))))
 
-;;(emms-all)
-;;(emms-default-players)
-;;(emms-mode-line 1)
-;;(emms-playing-time 1)
-;;(setq emms-source-file-default-directory "~/Music/"
-;;      emms-playlist-buffer-name "*Music*"
-;;      emms-info-asynchronously t
-;;      emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
-;;(map! :leader
-;;      (:prefix ("a" . "EMMS audio player")
-;;       :desc "Go to emms playlist"      "a" #'emms-playlist-mode-go
-;;       :desc "Emms pause track"         "x" #'emms-pause
-;;       :desc "Emms stop track"          "s" #'emms-stop
-;;       :desc "Emms play previous track" "p" #'emms-previous
-;;       :desc "Emms play next track"     "n" #'emms-next))
-;;
+;; (emms-all)
+;; (emms-default-players)
+;; (emms-mode-line 1)
+;; (emms-playing-time 1)
+;; (setq emms-source-file-default-directory "~/Music/"
+;;       emms-playlist-buffer-name "*Music*"
+;;       emms-info-asynchronously t
+;;       emms-source-file-directory-tree-function 'emms-source-file-directory-tree-find)
+;; (map! :leader
+;;       (:prefix ("a" . "EMMS audio player")
+;;        :desc "Go to emms playlist"      "a" #'emms-playlist-mode-go
+;;        :desc "Emms pause track"         "x" #'emms-pause
+;;        :desc "Emms stop track"          "s" #'emms-stop
+;;        :desc "Emms play previous track" "p" #'emms-previous
+;;        :desc "Emms play next track"     "n" #'emms-next))
+
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
@@ -836,3 +836,27 @@
 (map! :leader
       :desc "Zap to char"    "z" #'zap-to-char
       :desc "Zap up to char" "Z" #'zap-up-to-char)
+
+(use-package! lsp-ui
+  :after lsp-mode
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-doc-delay 0.5
+        lsp-ui-doc-position 'at-point ;; Or 'top, 'bottom, etc.
+        lsp-ui-doc-use-webkit nil
+        lsp-ui-sideline-enable t   ;; Enable sideline
+        lsp-ui-sideline-show-hover t)) ;; Show hover information in the sideline
+
+(after! lsp-dart
+  (setq lsp-dart-sdk-dir "/usr/lib/flutter/bin/cache/dart-sdk")
+  (setq lsp-dart-flutter-sdk-dir "/usr/lib/flutter"))
+
+(after! dart-mode
+  (add-hook 'dart-mode-hook 'lsp))
+
+(setq gc-cons-threshold (* 100 1024 1024)
+      read-process-output-max (* 1024 1024))
+
+;; Optionally, you can also enable lsp-ui-imenu and lsp-ui-peek for additional features
+;; (lsp-ui-imenu-enable t)
+;; (lsp-ui-peek-enable t)
