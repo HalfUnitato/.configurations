@@ -285,8 +285,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="FiraCode Nerd Font Mono",
-    fontsize = 12,
+    font="Ubuntu Mono",
+    fontsize = 18,
     padding = 0,
     background=colors[0]
 )
@@ -309,7 +309,7 @@ def init_widgets_list():
                  mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm)},
                  ),
         widget.Prompt(
-                 font = "FiraCode Nerd Font Mono",
+                 font = "Ubuntu Mono",
                  fontsize=14,
                  foreground = colors[1]
         ),
@@ -332,7 +332,7 @@ def init_widgets_list():
                  ),
         widget.TextBox(
                  text = '|',
-                 font = "FiraCode Nerd Font Mono",
+                 font = "Ubuntu Mono",
                  foreground = colors[1],
                  padding = 2,
                  fontsize = 14
@@ -349,7 +349,7 @@ def init_widgets_list():
                  ),
         widget.TextBox(
                  text = '|',
-                 font = "FiraCode Nerd Font Mono",
+                 font = "Ubuntu Mono",
                  foreground = colors[1],
                  padding = 2,
                  fontsize = 14
@@ -375,7 +375,7 @@ def init_widgets_list():
                  update_interval = 300,
                  func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
                  foreground = colors[3],
-                 fmt = '❤  {}',
+                 fmt = '❤ {}',
                  decorations=[
                      BorderDecoration(
                          colour = colors[3],
@@ -385,7 +385,7 @@ def init_widgets_list():
                  ),
         widget.Spacer(length = 8),
         widget.CPU(
-                 format = '󰻠  Cpu: {load_percent}%',
+                 format = '⚙ Cpu: {load_percent}%',
                  foreground = colors[4],
                  decorations=[
                      BorderDecoration(
@@ -399,7 +399,7 @@ def init_widgets_list():
                  foreground = colors[8],
                  mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm + ' -e htop')},
                  format = '{MemUsed: .0f}{mm}',
-                 fmt = '  Mem: {} used',
+                 fmt = '⚡ Mem: {} used',
                  decorations=[
                      BorderDecoration(
                          colour = colors[8],
@@ -415,7 +415,7 @@ def init_widgets_list():
                  partition = '/',
                  #format = '[{p}] {uf}{m} ({r:.0f}%)',
                  format = '{uf}{m} free',
-                 fmt = '  Disk: {}',
+                 fmt = ' Disk: {}',
                  visible_on_warn = False,
                  decorations=[
                      BorderDecoration(
@@ -438,7 +438,7 @@ def init_widgets_list():
         widget.Spacer(length = 8),
         widget.KeyboardLayout(
                  foreground = colors[4],
-                 fmt = '⌨  Kbd: {}',
+                 fmt = '⌨ Kbd: {}',
                  configured_keyboards=['noted'],
                  decorations=[
                      BorderDecoration(
