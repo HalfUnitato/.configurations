@@ -262,9 +262,9 @@
 
 (autoload 'exwm-enable "exwm-config.el")
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font Mono" :size 15)
-      doom-big-font (font-spec :family "FiraCode Nerd Font Mono" :size 24))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu" :size 15)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t))
@@ -845,7 +845,8 @@
         lsp-ui-doc-position 'at-point ;; Or 'top, 'bottom, etc.
         lsp-ui-doc-use-webkit nil
         lsp-ui-sideline-enable t   ;; Enable sideline
-        lsp-ui-sideline-show-hover t)) ;; Show hover information in the sideline
+        lsp-ui-sideline-show-hover t
+        lsp-ui-sideline-show-code-actions t)) ;; Show hover information in the sideline
 
 (after! lsp-dart
   (setq lsp-dart-sdk-dir "/usr/lib/flutter/bin/cache/dart-sdk")

@@ -83,3 +83,4 @@
 (package! clippy)
 (package! minimap)
 (package! olivetti)
+(package! all-the-icons)
