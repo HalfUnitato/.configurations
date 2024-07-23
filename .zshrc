@@ -254,3 +254,7 @@ source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
 export PATH="$HOME/.flutter/bin:$PATH"
 export PATH="$PATH:/home/unitato/.local/share/gem/ruby/3.0.0/bin"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
