@@ -60,7 +60,7 @@
 - [[#winner-mode][WINNER MODE]]
 - [[#zap-to-char][ZAP TO CHAR]]
 - [[#lsp-support][LSP SUPPORT]]
-  - [[#flutter-and-dart][FLUTTER AND DART]]
+- [[#flutter-and-dart][FLUTTER AND DART]]
 
 * ABOUT THIS CONFIG
 This is my personal Doom Emacs config.  Doom Emacs is a distribution of Emacs that uses the "evil" keybindings (Vim keybindings) and includes a number of nice extensions and a bit of configuration out of the box.  I am maintaining this config not just for myself, but also for those that want to explore some of what is possible with Emacs.  I will add a lot of examples of plugins and settings, some of them I may not even use personally.  I do this because many people following me on YouTube look at my configs as "documentation".
@@ -1409,7 +1409,7 @@ Setup lsp-mode
         lsp-ui-sideline-show-code-actions t)) ;; Show hover information in the sideline
 #+end_src
 
-** FLUTTER AND DART
+* FLUTTER AND DART
 #+begin_src emacs-lisp
 (after! lsp-dart
   (setq lsp-dart-sdk-dir "/usr/lib/flutter/bin/cache/dart-sdk")
@@ -1425,4 +1425,17 @@ Setup lsp-mode
 ;; (lsp-ui-imenu-enable t)
 ;; (lsp-ui-peek-enable t)
 
+#+end_src
+
+create hook for hot-reload on auto-save
+this needs `flutter run --pid-file /tmp/flutter.pid`
+
+#+begin_src emacs-lisp
+(require 'dart-mode)
+(defun auto-reload ()
+  (shell-command "kill -s SIGUSR1 $(cat /tmp/flutter.pid) && echo 'reload flutter...'"))
+
+(add-hook 'dart-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'auto-reload nil 'make-it-local)))
 #+end_src

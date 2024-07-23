@@ -861,3 +861,11 @@
 ;; Optionally, you can also enable lsp-ui-imenu and lsp-ui-peek for additional features
 ;; (lsp-ui-imenu-enable t)
 ;; (lsp-ui-peek-enable t)
+
+(require 'dart-mode)
+(defun auto-reload ()
+  (shell-command "kill -s SIGUSR1 $(cat /tmp/flutter.pid) && echo 'reload flutter...'"))
+
+(add-hook 'dart-mode-hook
+          (lambda ()
+            (add-hook 'after-save-hook 'auto-reload nil 'make-it-local)))

@@ -252,3 +252,5 @@ source $ZSH/oh-my-zsh.sh
 
 ### SETTING THE STARSHIP PROMPT ###
 eval "$(starship init zsh)"
+export PATH="$HOME/.flutter/bin:$PATH"
+export PATH="$PATH:/home/unitato/.local/share/gem/ruby/3.0.0/bin"

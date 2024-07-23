@@ -196,13 +196,14 @@ keys = [
 ]
 
 groups = []
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 
-group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9",]
+group_labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 #group_labels = ["DEV", "WWW", "SYS", "DOC", "VBOX", "CHAT", "MUS", "VID", "GFX",]
 #group_labels = ["", "", "", "", "", "", "", "", "",]
+group_labels = ["N/A", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"]
 
-group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
+group_layouts = ["monadtall", "monadtall", "tile", "tile", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall"]
 
 for i in range(len(group_names)):
     groups.append(
@@ -304,7 +305,7 @@ def battery_color(charge):
 def init_widgets_list():
     widgets_list = [
         widget.Image(
-                 filename = "~/.config/qtile/icons/logo.png",
+                 filename = "~/.config/qtile/icons/kanna_play_transparent.png",
                  scale = "False",
                  mouse_callbacks = {'Button1': lambda: qtile.spawn(myTerm)},
                  ),
